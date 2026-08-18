@@ -1,0 +1,39 @@
+{
+    "station": "0-203-0-11514",
+    "name": "Praha-Klementinum",
+    "start": "1775-01-01",
+    "end": "2026-08-17",
+    "hist_end": "2025-12-31",
+    "days": 91905,
+    "tmin": -27.6,
+    "tmax": 39.7,
+    "elements": {
+        "tma": {
+            "label": "Max",
+            "file": "data/tma.i16",
+            "missing": 0,
+            "tmin": -21.5,
+            "tmin_date": "1850-01-22",
+            "tmax": 39.7,
+            "tmax_date": "2026-06-28"
+        },
+        "tavg": {
+            "label": "Mean",
+            "file": "data/tavg.i16",
+            "missing": 0,
+            "tmin": -24.8,
+            "tmin_date": "1850-01-22",
+            "tmax": 32.4,
+            "tmax_date": "2026-06-28"
+        },
+        "tmi": {
+            "label": "Min",
+            "file": "data/tmi.i16",
+            "missing": 0,
+            "tmin": -27.6,
+            "tmin_date": "1785-03-01",
+            "tmax": 26.0,
+            "tmax_date": "2026-08-06"
+        }
+    }
+}

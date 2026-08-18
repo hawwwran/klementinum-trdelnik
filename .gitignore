@@ -1,0 +1,11 @@
+# Historical CSVs: 28 MB, and tools/prepare_data.py turns them into the .i16
+# grids that ARE tracked. README says how to fetch them again.
+data/raw/
+
+# Refresh bookkeeping, written at runtime by api/update.php.
+data/recent-state.json
+data/refresh.lock
+*.tmp
+
+# Working screenshots from development. The figures the README uses live in docs/.
+screenshots/

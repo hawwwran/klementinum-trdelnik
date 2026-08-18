@@ -1,0 +1,37 @@
+# Klementinum Trdelnik on Apache hosting. Everything here is optional: without
+# mod_headers the app still works, the data files just get cached more eagerly
+# (the client already fetches them with cache: no-store).
+
+# Entry point. Plenty of hosts ship a DirectoryIndex that lists index.php but
+# not index.html, and this app has no index.php — without this, / gives a 403 or
+# a directory listing instead of the page.
+<IfModule mod_dir.c>
+  DirectoryIndex index.html
+</IfModule>
+
+# No listings for data/, src/, vendor/. Drop this line if the host answers 500,
+# which means it does not allow overriding Options.
+Options -Indexes
+
+AddType application/octet-stream .i16
+
+# The tail update rewrites these, so they must revalidate.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(i16|json)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE application/json application/octet-stream text/css text/javascript
+</IfModule>
+
+# Local tooling, raw CSVs and the refresh bookkeeping are not part of the site.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^(tools|screenshots|data/raw)/ - [R=404,L]
+  RewriteRule ^data/(refresh\.lock|recent-state\.json)$ - [R=404,L]
+  # Belt and braces: api/diag.php also refuses to answer unless DIAG_KEY is set,
+  # so this line can go if you need to reach it and cannot edit the file.
+  RewriteRule ^api/diag\.php$ - [R=404,L]
+</IfModule>

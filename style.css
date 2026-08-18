@@ -1,0 +1,275 @@
+:root {
+  --bg: #0d0d0d;
+  --surface: #161615;
+  --ink: #f2f1ec;
+  --ink-2: #c3c2b7;
+  --muted: #898781;
+  --hairline: rgba(255, 255, 255, 0.08);
+  --brass: #c99a4b;
+  --brass-dim: #8a6c38;
+  --track: #2c2c2a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { height: 100%; }
+
+body {
+  display: flex;
+  background: var(--bg);
+  color: var(--ink-2);
+  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+/* ---- panel ---- */
+
+#panel {
+  width: 300px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  padding: 26px 22px;
+  background: var(--surface);
+  border-right: 1px solid var(--hairline);
+  overflow-y: auto;
+}
+
+#panel header h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+#panel .sub {
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.ctl h2 {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+/* ---- sliders (shared) ---- */
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 28px;
+  background: none;
+}
+input[type="range"]::-webkit-slider-runnable-track { height: 2px; background: var(--track); }
+input[type="range"]::-moz-range-track { height: 2px; background: var(--track); }
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px; height: 14px;
+  margin-top: -6px;
+  border-radius: 50%;
+  background: var(--brass);
+  border: 2px solid var(--surface);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--brass);
+  border: 2px solid var(--surface);
+}
+input[type="range"]:focus-visible { outline: 1px solid var(--brass); outline-offset: 2px; }
+
+/* ---- dual year slider ---- */
+
+.range-values {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 2px;
+}
+
+.dual { position: relative; height: 28px; }
+.dual-track {
+  position: absolute;
+  left: 0; right: 0; top: 13px;
+  height: 2px;
+  background: var(--track);
+}
+.dual-fill { position: absolute; top: 0; bottom: 0; background: var(--brass-dim); }
+.dual input[type="range"] {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.dual input[type="range"]::-webkit-slider-runnable-track { background: none; }
+.dual input[type="range"]::-moz-range-track { background: none; }
+.dual input[type="range"]::-webkit-slider-thumb { pointer-events: auto; }
+.dual input[type="range"]::-moz-range-thumb { pointer-events: auto; }
+
+/* ---- scale sliders ---- */
+
+.ctl label {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 12.5px;
+  margin-top: 10px;
+}
+.ctl label:first-of-type { margin-top: 0; }
+.ctl output { color: var(--ink); font-variant-numeric: tabular-nums; }
+.ctl .unit { margin-left: auto; font-size: 11px; color: var(--muted); }
+
+/* ---- buttons ---- */
+
+.btn-row { display: flex; gap: 8px; }
+.btn-row.stacked { margin-top: 8px; }
+button {
+  flex: 1;
+  padding: 7px 0;
+  font: inherit;
+  font-size: 13px;
+  color: var(--ink-2);
+  background: none;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover { background: rgba(255, 255, 255, 0.05); color: var(--ink); }
+button:focus-visible { outline: 1px solid var(--brass); outline-offset: 2px; }
+.seg button.active { border-color: var(--brass); color: var(--ink); }
+
+/* ---- stats ---- */
+
+.stats div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+.stats div:first-child { border-top: 1px solid var(--hairline); }
+.stats dt { font-size: 12.5px; color: var(--muted); }
+.stats dd { text-align: right; color: var(--ink); font-variant-numeric: tabular-nums; }
+.stats .when { display: block; font-size: 11px; color: var(--muted); }
+
+/* ---- legend + credit ---- */
+
+footer { margin-top: auto; }
+.legend { margin-bottom: 14px; }
+#legendBar { height: 8px; border-radius: 4px; }
+#legendTicks { position: relative; height: 16px; margin-top: 4px; }
+#legendTicks span {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.freshness { font-size: 11px; color: var(--ink-2); margin-bottom: 6px; }
+.freshness.stale { color: var(--muted); }
+.credit { font-size: 11px; color: var(--muted); }
+.credit a { color: var(--ink-2); }
+
+/* ---- stage ---- */
+
+#stage { position: relative; flex: 1; min-width: 0; min-height: 0; overflow: hidden; }
+/* touch-action: none, or a drag to rotate scrolls the page instead */
+#view { display: block; width: 100%; height: 100%; touch-action: none; }
+
+#labels { position: absolute; inset: 0; pointer-events: none; }
+.lbl {
+  position: absolute;
+  left: 0; top: 0;
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.lbl.month { letter-spacing: 0.08em; text-transform: uppercase; font-size: 10px; }
+.lbl.deg { color: #6a6862; font-size: 10px; }
+.lbl.year { color: var(--ink-2); }
+#labels.hide-years .lbl.year { display: none !important; }
+
+#tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: #1f1f1d;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 5px 9px;
+  font-size: 12px;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sizes are relative to #hud's font-size, which the render loop rewrites every
+   frame from the projected width of the spiral's empty center. */
+#hud {
+  position: absolute;
+  left: 0; top: 0;
+  pointer-events: none;
+  text-align: center;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.9);
+  font-size: 30px;
+}
+#hudYear {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1em;
+  color: var(--ink);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+#hudDate { font-size: 0.47em; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+#hudAvg { font-size: 0.4em; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.ctl .stacked-label { margin-top: 10px; }
+
+#glFail {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  padding: 0 12%;
+  text-align: center;
+  color: var(--ink-2);
+}
+
+#glFail .glFail-hint { max-width: 60ch; font-size: 12.5px; color: var(--muted); }
+#glFail button { padding: 8px 18px; border-color: var(--brass); color: var(--ink); }
+
+#hint {
+  position: absolute;
+  left: 14px; bottom: 12px;
+  font-size: 11px;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+/* Stacked layout. The panel's natural height is ~1500 px, so it must be told to
+   share the column: left as flex: none it eats the whole viewport and #stage
+   collapses to zero height, i.e. no view at all. */
+@media (max-width: 720px) {
+  body { flex-direction: column; }
+  #panel {
+    width: 100%;
+    order: 2;
+    flex: 1 1 40%;
+    min-height: 0;
+    border-right: none;
+    border-top: 1px solid var(--hairline);
+  }
+  #stage {
+    order: 1;
+    flex: 0 0 60%;
+    min-height: 240px;
+  }
+}
