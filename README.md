@@ -24,12 +24,16 @@ warming move the radius by a couple of percent, which is what the Curve control
 is for. Colour carries the trend much louder than shape does.
 
 <p>
-  <img src="docs/top.png" alt="Top view: the year as a clock face, months around the rim" width="49%">
-  <img src="docs/playback.png" alt="Playback paused in 1913, with the year axis" width="49%">
+  <img src="docs/top.png" alt="Top view: the year as a clock face, months around the rim, blue winter and red summer" width="49%">
+  <img src="docs/playback.png" alt="Playback paused in 1956, the coil built up to two thirds of its height beside the year axis" width="49%">
 </p>
 
-The right-hand figure is playback paused partway through, at 1913. Both images
-came out of the app's own **Save as image** button.
+Left, straight down the axis: one ring per year stacked into a single year's worth
+of angle, so 250 Januaries overlap at the top of the frame and 250 Julys at the
+bottom. Right, playback paused in 1956, looking down into the open top of what has
+been drawn so far. The rings and month labels ride the playhead, and the year axis
+shows how far through the record it has got. Both came out of the app's own **Save
+as image** button.
 
 Some things worth looking for once it is running:
 
