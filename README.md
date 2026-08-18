@@ -224,8 +224,17 @@ clears a wedged GPU process.
 `PLAN.md` has the design notes: why the radius mapping is anchored the way it is,
 how the fog window is derived, and what was tried and rejected.
 
-## Credits
+## Credits and licence
 
 Measurements by [ČHMÚ](https://www.chmi.cz/), the Czech Hydrometeorological
 Institute, from the Klementinum observatory, published as open data under CC BY
 4.0. Rendering with [three.js](https://threejs.org/) (MIT).
+
+This project's own code is MIT licensed, see [LICENSE](LICENSE). Two things in
+here are not covered by it and carry their own terms:
+
+- `vendor/` is three.js, MIT, Copyright 2010-2025 Three.js Authors, locally
+  patched. Its licence text is `vendor/LICENSE`.
+- `data/` is derived from ČHMÚ open data, [CC BY
+  4.0](https://creativecommons.org/licenses/by/4.0/). Reusing the measurements
+  means attributing ČHMÚ, whatever you do with the code.
